@@ -1,0 +1,14 @@
+namespace Domain.Entities
+{
+    public class PropertyImage
+    {
+        public string Id { get; set; } = string.Empty;
+        public string IdPropertyImage { get; set; } = string.Empty;
+        public string IdProperty { get; set; } = string.Empty;
+        public string File { get; set; } = string.Empty;
+        public bool Enabled { get; set; }
+
+        // Relaciones
+        public Property? Property { get; set; }
+    }
+}
