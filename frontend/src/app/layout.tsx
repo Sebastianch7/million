@@ -12,7 +12,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className="d-flex flex-column min-vh-100">
-        <AppNavbar />
         <main className="flex-grow-1">{children}</main>
         <Footer />
       </body>

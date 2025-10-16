@@ -7,7 +7,6 @@ export default function PropertyCard({ property }: { property: Property }) {
     property.images ||
     [];
 
-  // Si no hay imágenes, usa un placeholder
   const hasImages = images.length > 0;
 
   const carouselId = `carousel-${property.idProperty}`;

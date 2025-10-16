@@ -22,15 +22,13 @@ builder.Services.AddCors(options =>
 });
 
 
-// Registrar los mapeos de Mongo
+//Registrar los mapeos de Mongo
 OwnerMap.Configure();
 PropertyMap.Configure();
 PropertyImageMap.Configure();
 PropertyTraceMap.Configure();
 
-// =====================================
-// 🔧 Configuración de Servicios
-// =====================================
+//Configuración de Servicios
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -54,9 +52,7 @@ builder.Services.AddScoped<IPropertyTraceService, PropertyTraceService>();
 builder.Services.AddControllers();
 
 
-// =====================================
-// 📘 Configurar Swagger / OpenAPI
-// =====================================
+//Configurar Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -68,14 +64,11 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// =====================================
-// 🚀 Construcción de la App
-// =====================================
+
+//Construcción de la App
 var app = builder.Build();
 
-// =====================================
-// 🌐 Middlewares
-// =====================================
+//Middlewares
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

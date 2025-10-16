@@ -5,7 +5,6 @@ export default function AppNavbar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="shadow-sm">
         <Link href="/" className="navbar-brand fw-bold">
-          Sebastian Chaparro / Sr Frontend Developer
         </Link>
     </Navbar>
   );

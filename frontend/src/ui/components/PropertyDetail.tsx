@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { getPropertyById } from "@/infrastructure/api/propertyService";
@@ -21,7 +20,7 @@ export default function PropertyDetail() {
                 setProperty(p);
             } catch (err) {
                 console.error(err);
-                setError("No se pudo cargar la propiedad");
+                setError("The property could not be loaded");
             } finally {
                 setLoading(false);
             }

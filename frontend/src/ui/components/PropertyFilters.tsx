@@ -11,14 +11,13 @@ interface Filters {
 
 interface Props {
   onFilter: (filters: Filters) => void;
-  initialFilters?: Filters; // <-- recibe filtros activos desde el padre
+  initialFilters?: Filters;
 }
 
 export default function PropertyFilters({ onFilter, initialFilters }: Props) {
   const [filters, setFilters] = useState<Filters>(initialFilters ?? {});
   const [show, setShow] = useState(false);
 
-  // Sincroniza el estado interno con la prop initialFilters
   useEffect(() => {
     setFilters(initialFilters ?? {});
   }, [initialFilters]);
@@ -48,19 +47,17 @@ export default function PropertyFilters({ onFilter, initialFilters }: Props) {
   // Limpia localmente y notifica al padre para que limpie también
   const handleClear = () => {
     const empty: Filters = {};
-    setFilters(empty);    // limpia inputs del offcanvas
-    onFilter(empty);      // notifica al padre para recargar sin filtros
-    // No cerramos para que el usuario vea que quedó vacío (opcional)
+    setFilters(empty);
+    onFilter(empty);
   };
 
   return (
     <>
-      {/* Botón que abre el offcanvas */}
       <div className="d-flex justify-content-end mb-3">
         <Button variant="dark" onClick={() => setShow(true)}>
           Filters
           {Object.values(filters).filter((v) => v !== undefined && v !== "").length > 0 && (
-            <span className="ms-2 badge bg-primary">
+            <span className="ms-2 badge bg-secondary">
               {Object.values(filters).filter((v) => v !== undefined && v !== "").length}
             </span>
           )}
@@ -80,7 +77,6 @@ export default function PropertyFilters({ onFilter, initialFilters }: Props) {
                 name="name"
                 type="text"
                 value={filters.name ?? ""}
-                placeholder="Ej. Apartamento Centro"
                 onChange={handleChange}
               />
             </Form.Group>
@@ -91,7 +87,6 @@ export default function PropertyFilters({ onFilter, initialFilters }: Props) {
                 name="address"
                 type="text"
                 value={filters.address ?? ""}
-                placeholder="Ej. Bogotá"
                 onChange={handleChange}
               />
             </Form.Group>
@@ -104,7 +99,6 @@ export default function PropertyFilters({ onFilter, initialFilters }: Props) {
                     name="minPrice"
                     type="number"
                     value={filters.minPrice ?? ""}
-                    placeholder="100000000"
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -116,7 +110,6 @@ export default function PropertyFilters({ onFilter, initialFilters }: Props) {
                     name="maxPrice"
                     type="number"
                     value={filters.maxPrice ?? ""}
-                    placeholder="500000000"
                     onChange={handleChange}
                   />
                 </Form.Group>

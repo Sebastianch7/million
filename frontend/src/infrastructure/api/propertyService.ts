@@ -10,15 +10,10 @@ export interface PropertyFilters {
   maxPrice?: number;
 }
 
-/**
- * Obtiene propiedades desde la API .NET
- * Si hay filtros, usa el endpoint /filter
- */
 export async function getProperties(filters?: PropertyFilters): Promise<Property[]> {
   try {
     let url = API_URL;
 
-    // Si hay filtros, construimos la query
     if (filters && Object.keys(filters).length > 0) {
       const params = new URLSearchParams();
 
@@ -40,16 +35,8 @@ export async function getProperties(filters?: PropertyFilters): Promise<Property
   }
 }
 
-/**
- * Obtiene una propiedad individual por ID
- */
 export async function getPropertyById(id: string): Promise<Property> {
-  try {
-    const res = await fetch(`${API_URL}/${id}`);
-    if (!res.ok) throw new Error("Property not found");
-    return res.json();
-  } catch (error) {
-    console.error("Error in getPropertyById:", error);
-    throw error;
-  }
+  const res = await fetch(`${API_URL}/${id}`);
+  if (!res.ok) throw new Error("Error fetching property");
+  return res.json() as Promise<Property>;
 }
