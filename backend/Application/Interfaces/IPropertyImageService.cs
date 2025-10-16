@@ -6,7 +6,7 @@ namespace Application.Interfaces
 {
     public interface IPropertyImageService
     {
-        Task<IEnumerable<PropertyImageDto>> GetAllAsync();
+        Task<List<PropertyImageDto>> GetAllAsync();
         Task<PropertyImageDto> GetByIdAsync(string id);
     }
 }

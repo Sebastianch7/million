@@ -14,7 +14,7 @@ namespace Infrastructure.Repositories
             _collection = context.PropertyImages;
         }
 
-        public async Task<IEnumerable<PropertyImage>> GetAllAsync() =>
+        public async Task<List<PropertyImage>> GetAllAsync() =>
             await _collection.Find(_ => true).ToListAsync();
 
         public async Task<PropertyImage?> GetByIdAsync(string id) =>

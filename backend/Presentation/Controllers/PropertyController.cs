@@ -15,7 +15,7 @@ namespace Presentation.Controllers
         public PropertyController(IPropertyService service)
         {
             _service = service;
-        }        
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll() =>
@@ -24,5 +24,12 @@ namespace Presentation.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id) =>
             Ok(await _service.GetByIdAsync(id));
+
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetFiltered([FromQuery] PropertyFilterDto filter)
+        {
+            var properties = await _service.GetFilteredAsync(filter);
+            return Ok(properties);
+        }
     }
 }

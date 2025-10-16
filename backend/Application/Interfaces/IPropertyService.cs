@@ -1,12 +1,11 @@
 using Application.DTOs;
-using Application.Interfaces.Repositories;
-using Domain.Entities;
 
 namespace Application.Interfaces
 {
     public interface IPropertyService
     {
-        Task<IEnumerable<PropertyDto>> GetAllAsync();
+        Task<List<PropertyDto>> GetAllAsync();
         Task<PropertyDto> GetByIdAsync(string id);
+        Task<List<PropertyDto>> GetFilteredAsync(PropertyFilterDto filter);
     }
 }

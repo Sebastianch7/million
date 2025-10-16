@@ -4,7 +4,7 @@ namespace Application.Interfaces.Repositories
 {
     public interface IPropertyImageRepository
     {
-        Task<IEnumerable<PropertyImage>> GetAllAsync();
+        Task<List<PropertyImage>> GetAllAsync();
         Task<PropertyImage?> GetByIdAsync(string id);
     }
 }

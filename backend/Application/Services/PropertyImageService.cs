@@ -18,10 +18,10 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<PropertyImageDto>> GetAllAsync()
+        public async Task<List<PropertyImageDto>> GetAllAsync()
         {
             var entities = await _repository.GetAllAsync();
-            return _mapper.Map<IEnumerable<PropertyImageDto>>(entities);
+            return _mapper.Map<List<PropertyImageDto>>(entities);
         }
 
         public async Task<PropertyImageDto> GetByIdAsync(string id)

@@ -18,10 +18,10 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<PropertyTraceDto>> GetAllAsync()
+        public async Task<List<PropertyTraceDto>> GetAllAsync()
         {
             var entities = await _repository.GetAllAsync();
-            return _mapper.Map<IEnumerable<PropertyTraceDto>>(entities);
+            return _mapper.Map<List<PropertyTraceDto>>(entities);
         }
 
         public async Task<PropertyTraceDto> GetByIdAsync(string id)

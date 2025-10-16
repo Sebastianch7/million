@@ -6,7 +6,7 @@ namespace Application.Interfaces
 {
     public interface IOwnerService
     {
-        Task<IEnumerable<OwnerDto>> GetAllAsync();
+        Task<List<OwnerDto>> GetAllAsync();
         Task<OwnerDto> GetByIdAsync(string id);
     }
 }

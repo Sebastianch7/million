@@ -9,6 +9,19 @@ using Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost3000",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000") // frontend
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+
 // Registrar los mapeos de Mongo
 OwnerMap.Configure();
 PropertyMap.Configure();
@@ -39,6 +52,7 @@ builder.Services.AddScoped<IPropertyTraceService, PropertyTraceService>();
 
 // Controladores
 builder.Services.AddControllers();
+
 
 // =====================================
 // 📘 Configurar Swagger / OpenAPI
@@ -73,6 +87,8 @@ app.UseHttpsRedirection();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
+
+app.UseCors("AllowLocalhost3000");
 
 app.MapControllers();
 

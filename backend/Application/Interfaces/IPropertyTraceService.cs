@@ -6,7 +6,7 @@ namespace Application.Interfaces
 {
     public interface IPropertyTraceService
     {
-        Task<IEnumerable<PropertyTraceDto>> GetAllAsync();
+        Task<List<PropertyTraceDto>> GetAllAsync();
         Task<PropertyTraceDto> GetByIdAsync(string id);
     }
 }

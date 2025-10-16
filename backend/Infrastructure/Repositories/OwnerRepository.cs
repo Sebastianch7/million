@@ -14,7 +14,7 @@ namespace Infrastructure.Repositories
             _collection = context.Owners;
         }
 
-        public async Task<IEnumerable<Owner>> GetAllAsync() =>
+        public async Task<List<Owner>> GetAllAsync() =>
             await _collection.Find(_ => true).ToListAsync();
 
         public async Task<Owner?> GetByIdAsync(string id) =>

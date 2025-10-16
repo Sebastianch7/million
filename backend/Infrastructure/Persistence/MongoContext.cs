@@ -1,25 +1,23 @@
-using Microsoft.Extensions.Configuration;
-using MongoDB.Driver;
 using Domain.Entities;
+using MongoDB.Driver;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Persistence
 {
     public class MongoContext
     {
-        private readonly IMongoDatabase _db;
+        private readonly IMongoDatabase _database;
 
         public MongoContext(IConfiguration configuration)
         {
-            var connectionString = configuration["MongoSettings:ConnectionString"] ?? "mongodb://localhost:27017";
-            var databaseName = configuration["MongoSettings:DatabaseName"] ?? "millionDB";
-
+            var connectionString = configuration.GetConnectionString("MongoDb");
             var client = new MongoClient(connectionString);
-            _db = client.GetDatabase(databaseName);
+            _database = client.GetDatabase("millionDB");
         }
 
-        public IMongoCollection<Owner> Owners => _db.GetCollection<Owner>("Owners");
-        public IMongoCollection<Property> Properties => _db.GetCollection<Property>("Properties");
-        public IMongoCollection<PropertyImage> PropertyImages => _db.GetCollection<PropertyImage>("PropertyImages");
-        public IMongoCollection<PropertyTrace> PropertyTraces => _db.GetCollection<PropertyTrace>("PropertyTraces");
+        public IMongoCollection<Property> Properties => _database.GetCollection<Property>("Properties");
+        public IMongoCollection<Owner> Owners => _database.GetCollection<Owner>("Owners");
+        public IMongoCollection<PropertyImage> PropertyImages => _database.GetCollection<PropertyImage>("PropertyImages");
+        public IMongoCollection<PropertyTrace> PropertyTraces => _database.GetCollection<PropertyTrace>("PropertyTraces");
     }
 }

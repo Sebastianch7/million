@@ -14,7 +14,7 @@ namespace Infrastructure.Repositories
             _collection = context.PropertyTraces;
         }
 
-        public async Task<IEnumerable<PropertyTrace>> GetAllAsync() =>
+        public async Task<List<PropertyTrace>> GetAllAsync() =>
             await _collection.Find(_ => true).ToListAsync();
 
         public async Task<PropertyTrace?> GetByIdAsync(string id) =>

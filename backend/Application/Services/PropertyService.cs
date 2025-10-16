@@ -1,9 +1,8 @@
 using Application.DTOs;
-using Application.Exceptions;
 using Application.Interfaces;
 using Application.Interfaces.Repositories;
+using Application.Exceptions;
 using AutoMapper;
-using Domain.Entities;
 
 namespace Application.Services
 {
@@ -18,20 +17,32 @@ namespace Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<PropertyDto>> GetAllAsync()
+        public async Task<List<PropertyDto>> GetAllAsync()
         {
-            var entities = await _repository.GetAllAsync();
-            return _mapper.Map<IEnumerable<PropertyDto>>(entities);
+            var properties = await _repository.GetAllAsync();
+            return _mapper.Map<List<PropertyDto>>(properties);
         }
 
         public async Task<PropertyDto> GetByIdAsync(string id)
         {
-            var entity = await _repository.GetByIdAsync(id);
+            var property = await _repository.GetByIdAsync(id);
 
-            if (entity == null)
-                throw new NotFoundException($"Property with id not found: {id}");
+            if (property == null)
+                throw new NotFoundException($"Property with ID {id} not found.");
 
-            return _mapper.Map<PropertyDto>(entity);
+            return _mapper.Map<PropertyDto>(property);
+        }
+
+        public async Task<List<PropertyDto>> GetFilteredAsync(PropertyFilterDto filter)
+        {
+            var properties = await _repository.GetFilteredAsync(
+                filter.Name,
+                filter.Address,
+                filter.MinPrice,
+                filter.MaxPrice
+            );
+
+            return _mapper.Map<List<PropertyDto>>(properties);
         }
     }
 }
